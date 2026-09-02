@@ -1,0 +1,104 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+
+
+.input-name {
+    background: transparent;
+    border: none;
+    padding: 4px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-size: 16px;
+    text-align: center;
+}
+
+.input-name:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.input-name:focus {
+    outline: none;
+}
+
+.menu {
+    grid-column: 1; /* Es col·loca a la primera columna (esquerra) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+    margin-left: 70px;
+}
+
+.text-area {
+    grid-column: 2; /* Es col·loca a la columna central */
+    justify-self: center; /* Es centra perfectament dins de la seva columna */
+    margin: 40px 0; /* Canviem 'auto' per un marge vertical fix */
+    position: relative;
+    
+}
+
+.img-menu {
+    height: 35px;
+    width: 35px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+        /* Select de mida de font */
+        .toolbar select {
+        padding: 4px 6px;
+        border: 1px solid #e2c4ac;
+        border-radius: 4px;
+        background: #E8DDD4;
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        }
+
+        /* Botons B, I, U, A, llapis */
+        .toolbar button {
+        padding: 4px 6px;
+        border: 1px solid #e2c4ac;
+        background: #E8DDD4;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #444;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        }
+
+        /* Hover */
+        .toolbar button:hover,
+        .toolbar select:hover {
+        background: #f1f3f4;
+        border-color: #c6c6c6;
+        }
+
+        /* Actiu (quan el botó està seleccionat) */
+        .toolbar button.active {
+        background: #E8DDD4;
+        border-color: #4285f4;
+        color: #4285f4;
+        }
+
+
+

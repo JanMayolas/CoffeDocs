@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffe-Docs</title>
+
+    <!-- Enllaços CSS -->
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/editor.css">
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="../style/themes.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>
+            <img src="../assets/images/" alt="">CoffeDocs
+        </h1>
+        
+    
+        <input 
+            class="input-name" 
+            type="text" 
+            placeholder="document sense títol" 
+            value="Document sense títol"
+        >
+        
+<div class="toolbar">
+        <select class="font-size">
+        <option>11</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>24</option>
+        <option>30</option>
+        <option>36</option>
+        <option>40</option>
+        <option>48</option>
+        <option>60</option>
+        </select>
+
+        <button class="bold">B</button>
+        <button class="italic">I</button>
+        <button class="underline">U</button>
+        <button class="text-color">A</button>
+        <button class="edit-pencil">✏️</button>
+</div>
+
+        <button class="button-header setting-button" id="setting-button">
+            <img class="img-menu" src="../assets/icons/settings.svg" alt="settings">
+        </button>
+
+    </header>
+
+    <!-- Main -->
+    <main>
+
+        <!-- Sidebar (Aside) -->
+        <aside class="sidebar">
+            <!-- Contingut del menú lateral -->
+        </aside>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Toolbar / Menú d'accions -->
+            <div class="menu">
+                <button class="button-sidebar save-button" id="save-button">
+                    <img class="img-menu" src="../assets/icons/save.svg" alt="save">
+                </button>
+
+                <button class="button-sidebar folder-button" id="folder-button">
+                    <img class="img-menu" src="../assets/icons/folder.svg" alt="folder">
+                </button>
+
+                <button class="button-sidebar file-pluse-button" id="addfile-button">
+                    <img class="img-menu" src="../assets/icons/file-plus-corner.svg" alt="file_pluse">
+                </button>
+                
+                <button class="button-sidebar search-button" id="search-button">
+                    <img class="img-menu" src="../assets/icons/search.svg" alt="search">
+                </button>
+            </div>
+
+            <!-- Editor -->
+            <div id="text-area" contenteditable="true" class="text-area"></div>
+            
+        </div>
+
+    </main>
+
+    <!-- Scripts JavaScript -->
+    <script src="../js/app.js"></script>
+    <script src="../js/documentManager.js"></script>
+    <script src="../js/editor.js"></script>
+    <script src="../js/toolbar.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/storage.js"></script>
+
+</body>
+</html>
