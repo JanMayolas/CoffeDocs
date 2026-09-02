@@ -54,6 +54,8 @@ CoffeeDocs aposta per una experiència d’edició **càlida**, **minimalista** 
 
 ## 📁 Estructura del projecte
 
+```text
+
 CoffeeDocs/
 │
 ├── assets/
@@ -78,6 +80,9 @@ CoffeeDocs/
 │   └── index.html
 │
 └── README.md
+
+
+```
 
 
 ---
@@ -109,7 +114,7 @@ CoffeeDocs/
 - [x] Header inicial  
 - [x] Full centrat  
 - [x] Estètica càlida  
-- [ ] Sidebar (estructura)  
+- [x] Sidebar (estructura)  
 - [ ] Temes CSS (Light Coffee, Dark Roast, Espresso Minimal)
 
 ### 📄 Fase 2 — Editor i pàgines
@@ -117,10 +122,10 @@ CoffeeDocs/
 - [ ] Padding i marges del document  
 - [ ] Estil de focus del full  
 - [ ] Sistema de pàgines (JS)  
-- [ ] Cursor i comportament natural com Google Docs
+- [x] Cursor i comportament natural com Google Docs
 
 ### 💾 Fase 3 — Lògica del document
-- [ ] Guardar contingut al localStorage  
+- [x] Guardar contingut al localStorage  
 - [ ] Carregar documents existents  
 - [ ] Renombrar documents  
 - [ ] Sidebar amb llista de documents  
@@ -147,13 +152,24 @@ CoffeeDocs/
 ---
 
 ## 📝 Notes de desenvolupament
-- L’ordre del projecte és **HTML → CSS → JS**  
-- El JS es farà al final, quan la UI estigui estable  
+- L’ordre del projecte ha estat **HTML → CSS → JS**  
+- Personalment, trobo que fer la UI avans que el JS es
+  millor, ja que pots anar desenvolupant tot per ordre. 
 - L’editor comença **sense placeholder**, com Google Docs  
-- La paginació es farà detectant l’alçada del full  
+- La paginació es farà com un markdown, no tindra canvi de
+  pagines, sera un full infinit.
 - Tot el projecte és **vanilla**, sense frameworks
 
 ---
+
+```python
+def saludar(name):
+    print(f"thanks for watching, {name}!")
+
+saludar("Developer")
+```
+
+
 
 ## 📜 Llicència
 Projecte educatiu. Pots clonar-lo, estudiar-lo i modificar-lo lliurement.
