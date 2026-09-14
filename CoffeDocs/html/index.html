@@ -29,27 +29,36 @@
         >
         
 <div class="toolbar">
-        <select class="font-size">
+        <select id="font-size">
         <option>11</option>
-        <option>13</option>
+        <option>12</option>
         <option>14</option>
-        <option>15</option>
-        <option>16</option>
-        <option>17</option>
         <option>18</option>
+        <option>16</option>
         <option>24</option>
         <option>30</option>
         <option>36</option>
         <option>40</option>
+        <option>36</option>
         <option>48</option>
         <option>60</option>
+        <option>72</option>
         </select>
 
-        <button class="bold">B</button>
-        <button class="italic">I</button>
-        <button class="underline">U</button>
-        <button class="text-color">A</button>
-        <button class="edit-pencil">✏️</button>
+        
+        <button id="bold">B</button>
+        <button id="italic">I</button>
+        <button id="underline">U</button>
+
+        <div>
+            <button class="text-color" title="Text color">A</button>
+            <input type="color" class="text-color-picker">
+
+            <button class="mark-color" id="mark-color">✏️</button>
+            <input type="color" class="mark-color-picker">
+        </div>
+
+        
 </div>
 
         <button class="button-header setting-button" id="setting-button">
@@ -72,7 +81,7 @@
             <!-- Toolbar / Menú d'accions -->
             <div class="menu">
                 <button class="button-sidebar save-button" id="save-button">
-                    <img class="img-menu" src="../assets/icons/save.svg" alt="save">
+                    <img class="img-menu" src="../assets/icons/download.svg" alt="save">
                 </button>
 
                 <button class="button-sidebar folder-button" id="folder-button">

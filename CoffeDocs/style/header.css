@@ -100,5 +100,83 @@ header {
         color: #4285f4;
         }
 
+.text-color {
+    position: relative;
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.text-color::after {
+    content: "";
+
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 5px;
+
+    height: 3px;
+    border-radius: 2px;
+
+    background: #000000;
+}
+
+.text-color:hover {
+    background: #eee;
+}
+
+.text-color-picker {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
 
 
+.mark-color {
+    position: relative;
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.mark-color::after {
+    content: "";
+
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 5px;
+
+    height: 3px;
+    border-radius: 2px;
+}
+
+.mark-color:hover {
+    background: #eee;
+}
+
+.mark-color-picker {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}

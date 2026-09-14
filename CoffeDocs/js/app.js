@@ -4,6 +4,7 @@ const folder = document.getElementById("folder-button")
 const add_file = document.getElementById("addfile-button")
 const search = document.getElementById("search-button")
 
+
 setting.addEventListener("click", () => {
     console.log("setting")
 });
@@ -21,5 +22,16 @@ search.addEventListener("click", () => {
 });
 
 save.addEventListener("click", () => {
-    console.log("Save")
+    console.log("download")
 });
+
+const file_name = document.querySelector(".input-name");
+const name_saved = localStorage.getItem("document-content");
+
+if(name_saved) {
+    file_name.innerHTML = name_saved;
+}
+
+file_name.addEventListener("change", () => {
+    localStorage.setItem(file_name, file_name.innerHTML);
+})
