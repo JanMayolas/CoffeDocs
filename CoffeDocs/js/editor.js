@@ -1,0 +1,1 @@
+console.log("Editor script loaded successfully.");
