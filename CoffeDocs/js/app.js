@@ -25,13 +25,27 @@ save.addEventListener("click", () => {
     console.log("download")
 });
 
-const file_name = document.querySelector(".input-name");
-const name_saved = localStorage.getItem("document-content");
+document.addEventListener("DOMContentLoaded", () => {
 
-if(name_saved) {
-    file_name.innerHTML = name_saved;
-}
+    // Descàrrega de memòria amb arxius .md
+    const saveButton = document.getElementById("save-button");
+    const fileNameInput = document.querySelector(".input-name");
+    const textArea = document.getElementById("text-area");
 
-file_name.addEventListener("change", () => {
-    localStorage.setItem(file_name, file_name.innerHTML);
-})
+    if (saveButton) {
+        saveButton.addEventListener("click", () => {
+            const title = fileNameInput.value || "document";
+            const content = textArea.innerText; // .innerText per agafar el text net sense etiquetes HTML
+
+            const blob = new Blob([content], { type: "text/markdown" });
+            const link = document.createElement("a");
+            
+            link.href = URL.createObjectURL(blob);
+            link.download = `${title}.md`;
+            link.click();
+            
+            URL.revokeObjectURL(link.href);
+        });
+    }
+
+});
