@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffe-Docs</title>
+    <link rel="icon" href="../assets/images/CoffeDocs.svg" type="image/svg+xml">
 
     <!-- Enllaços CSS -->
     <link rel="stylesheet" href="../style/main.css">
@@ -14,12 +15,20 @@
 </head>
 <body>
 
+    
+    
     <!-- Header -->
     <header>
-        <h1>
-            <img src="../assets/images/" alt="">CoffeDocs
+        
+        <div class="logo-conteiner">
+        <img class="img-header" src="../assets/images/CoffeDocs-editor.svg" alt="CoffeDocs">
+        
+        <h1 class="header-title">
+            CoffeDocs
         </h1>
         
+
+        </div>
     
         <input 
             class="input-name" 
@@ -86,6 +95,7 @@
 
                 <button class="button-sidebar folder-button" id="folder-button">
                     <img class="img-menu" src="../assets/icons/folder.svg" alt="folder">
+                    <input class="folder-input" type="file" accept=".md">
                 </button>
 
                 <button class="button-sidebar file-pluse-button" id="addfile-button">

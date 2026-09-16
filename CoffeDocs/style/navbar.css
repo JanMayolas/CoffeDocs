@@ -43,3 +43,7 @@
     margin-right: 70px;
     padding: 30px; 
 }
+
+.folder-button input[type="file"] {
+    display: none; /* Amaga l'input de fitxer */
+}

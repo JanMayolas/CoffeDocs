@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Descàrrega de memòria amb arxius .md
+    // Descàrrega arxius .md
     const saveButton = document.getElementById("save-button");
     const fileNameInput = document.querySelector(".input-name");
     const textArea = document.getElementById("text-area");
@@ -20,5 +20,28 @@ document.addEventListener("DOMContentLoaded", () => {
             URL.revokeObjectURL(link.href);
         });
     }
+
+});
+
+//carregar un arxius del sistema de fitxers local
+
+//obre el sistema de fitxers local
+folder.addEventListener("click", () => {
+    document.querySelector("input[type='file']").click();
+});
+
+const folderInput = document.querySelector(".folder-input");
+
+folderInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+        reader = new FileReader();
+    
+    
+            reader.onload = () => {
+                document.getElementById("text-area").textContent = reader.result;
+
+            };
+
+                reader.readAsText(file);
 
 });

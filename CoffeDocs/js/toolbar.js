@@ -1,68 +1,87 @@
-const bold = document.getElementById("bold");
-const italic = document.getElementById("italic");
-const underline = document.getElementById("underline");
-const fontSize = document.getElementById("font-size");
-const textColorButton = document.querySelector(".text-color");;
+// Elements de format de text.
+const boldButton = document.getElementById("bold");
+const italicButton = document.getElementById("italic");
+const underlineButton = document.getElementById("underline");
+const fontSizeSelect = document.getElementById("font-size");
+const textColorButton = document.querySelector(".text-color");
 const textColorPicker = document.querySelector(".text-color-picker");
 const markColorButton = document.querySelector(".mark-color");
 const markColorPicker = document.querySelector(".mark-color-picker");
+const textArea = document.getElementById("text-area");
 
+// Executa una ordre de format i recupera el focus de l'editor.
+function applyTextFormat(command, value = null) {
+  document.execCommand(command, false, value);
+  textArea.focus();
+}
 
-bold.addEventListener("click", () => {
-   document.execCommand('bold', false, null);
-    document.getElementById('text-area').focus();
-});
+// Activa o desactiva la negreta.
+function toggleBold() {
+  applyTextFormat("bold");
+}
 
-italic.addEventListener("click", () => {
-    document.execCommand(`italic`, false, null)
-        document.getElementById('text-area').focus();
-})
+// Activa o desactiva la cursiva.
+function toggleItalic() {
+  applyTextFormat("italic");
+}
 
-underline.addEventListener("click", () => {
-    document.execCommand(`underline`, false, null)
-        document.getElementById('text-area').focus();
-})
+// Activa o desactiva el subratllat.
+function toggleUnderline() {
+  applyTextFormat("underline");
+}
 
+// Obre el selector de color de text.
+function openTextColorPicker() {
+  textColorPicker.click();
+}
 
-textColorButton.addEventListener("click", () => {
-    textColorPicker.click();
-})
+// Aplica el color seleccionat al text.
+function changeTextColor() {
+  applyTextFormat("foreColor", textColorPicker.value);
+}
 
-    textColorPicker.addEventListener("input", () => {
-    const selectedColor = textColorPicker.value;
-    document.execCommand("foreColor", false, selectedColor);
-        document.getElementById('text-area').focus();
-});
+// Obre el selector de color de ressaltat.
+function openMarkColorPicker() {
+  markColorPicker.click();
+}
 
-markColorButton.addEventListener("click", () => {
-    markColorPicker.click();
-})
+// Aplica el color seleccionat com a fons del text.
+function changeMarkColor() {
+  applyTextFormat("backColor", markColorPicker.value);
+}
 
-    markColorPicker.addEventListener("input", () => {
-    const selectedMarkerColor = markColorPicker.value;
-    document.execCommand("backColor", false, selectedMarkerColor);
-        document.getElementById('text-area').focus();
-});
+// Canvia la mida del text seleccionat.
+function changeFontSize() {
+  const selection = window.getSelection();
 
+  // Evita errors quan no existeix cap rang de selecció.
+  if (!selection.rangeCount || !selection.toString()) {
+    textArea.focus();
+    return;
+  }
 
-fontSize.addEventListener("change", () => {
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const hasSelection = selection.toString().length > 0;
+  const range = selection.getRangeAt(0);
+  const span = document.createElement("span");
 
-    if(hasSelection) {
-        //fer debug per a saber com esta creant el span. 
-        // perque quan seleccionis un text i canviis de mida, 
-        // i tornis a posar una mida sense perdre el focus
-        //torni a canviar la mida.
+  // Assigna la mida seleccionada en píxels.
+  span.style.fontSize = `${fontSizeSelect.value}px`;
 
-        const span = document.createElement("span");
-        span.style.fontSize = fontSize.value.toString()+"px";
-        range.surroundContents(span);
-        console.log(span);
-    } else{
-        //crear-ho
-        console.log("False")
-    }
-});
+  // Envolta el text seleccionat amb l'element span.
+  range.surroundContents(span);
+  textArea.focus();
+}
 
+//botons de format.
+boldButton.addEventListener("click", toggleBold);
+italicButton.addEventListener("click", toggleItalic);
+underlineButton.addEventListener("click", toggleUnderline);
+
+//color.
+textColorButton.addEventListener("click", openTextColorPicker);
+textColorPicker.addEventListener("input", changeTextColor);
+
+markColorButton.addEventListener("click", openMarkColorPicker);
+markColorPicker.addEventListener("input", changeMarkColor);
+
+//mida de lletra.
+fontSizeSelect.addEventListener("change", changeFontSize);

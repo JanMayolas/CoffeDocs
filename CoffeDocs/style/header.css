@@ -5,7 +5,25 @@ header {
     padding: 0 20px;
 }
 
+.logo-conteiner {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espai entre la imatge i el títol */
+}
 
+.header-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.img-header {
+    height: 90px;
+    width: 90px;
+    
+   
+}
 
 .input-name {
     background: transparent;
