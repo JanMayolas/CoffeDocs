@@ -45,3 +45,11 @@ folderInput.addEventListener("change", (event) => {
                 reader.readAsText(file);
 
 });
+
+//Create a new file
+
+add_file.addEventListener("click", () => {
+    
+    
+
+})
