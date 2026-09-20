@@ -47,3 +47,31 @@
 .folder-button input[type="file"] {
     display: none; /* Amaga l'input de fitxer */
 }
+
+
+.sidebar-stats {
+    position: relative;
+}
+
+.stats-panel {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 30px;
+
+    width: 200px;
+    padding: 10px;
+    
+
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+
+    font-family: ComicRelief, Inter, Poppins, Arial, sans-serif;;
+    font-size: 18px;
+}
+
+.stats-panel.visible {
+    display: block;
+}

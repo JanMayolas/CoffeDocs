@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     editor.addEventListener("input", () => {
         localStorage.setItem("document-content", editor.innerHTML);
+
+        updateStats();
     });
 
 });
