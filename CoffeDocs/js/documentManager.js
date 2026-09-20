@@ -49,7 +49,11 @@ folderInput.addEventListener("change", (event) => {
 //Create a new file
 
 add_file.addEventListener("click", () => {
-    
-    
+    const fileName = document.querySelector(".input-name");
+
+    editor.innerHTML = "";
+    localStorage.clear();
+    fileName.value = "document sense títol";
+    fileName.placeholder = "document sense títol";
 
 })
