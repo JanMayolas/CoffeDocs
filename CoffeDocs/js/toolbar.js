@@ -50,25 +50,39 @@ function changeMarkColor() {
   applyTextFormat("backColor", markColorPicker.value);
 }
 
-// Canvia la mida del text seleccionat.
+// Canvia la mida de la lletra del text seleccionat i recupera el focus de l'editor.
 function changeFontSize() {
-  const selection = window.getSelection();
+const selection = window.getSelection();
+const spanClear = editor.querySelectorAll("span"); 
 
-  // Evita errors quan no existeix cap rang de selecció.
-  if (!selection.rangeCount || !selection.toString()) {
-    textArea.focus();
-    return;
-  }
-
-  const range = selection.getRangeAt(0);
-  const span = document.createElement("span");
-
-  // Assigna la mida seleccionada en píxels.
-  span.style.fontSize = `${fontSizeSelect.value}px`;
-
-  // Envolta el text seleccionat amb l'element span.
-  range.surroundContents(span);
+if (!selection.rangeCount) {
   textArea.focus();
+  return;
+}
+
+
+const range = selection.getRangeAt(0);
+
+const span = document.createElement("span");
+span.style.fontSize = `${fontSizeSelect.value}px`;
+
+if (selection.toString().length > 0) {
+  
+
+  range.surroundContents(span);
+
+} else {
+  
+
+  span.innerHTML = "&#8203;"; 
+  
+  range.insertNode(span);
+  
+  range.setStart(span, 0);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
 }
 
 //botons de format.
@@ -79,9 +93,6 @@ underlineButton.addEventListener("click", toggleUnderline);
 //color.
 textColorButton.addEventListener("click", openTextColorPicker);
 textColorPicker.addEventListener("input", changeTextColor);
-
-markColorButton.addEventListener("click", openMarkColorPicker);
-markColorPicker.addEventListener("input", changeMarkColor);
 
 //mida de lletra.
 fontSizeSelect.addEventListener("change", changeFontSize);
