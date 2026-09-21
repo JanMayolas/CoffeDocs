@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("document-content", editor.innerHTML);
 
         updateStats();
+        updateCharacterCount();
+        updateParagraphCount();
     });
 
 });
