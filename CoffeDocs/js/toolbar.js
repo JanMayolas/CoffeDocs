@@ -52,16 +52,39 @@ function changeMarkColor() {
 
 // Canvia la mida de la lletra del text seleccionat i recupera el focus de l'editor.
 function changeFontSize() {
+
 const selection = window.getSelection();
-const spanClear = editor.querySelectorAll("span"); 
 
 if (!selection.rangeCount) {
-  textArea.focus();
-  return;
+    // ...
+    return;
 }
 
-
 const range = selection.getRangeAt(0);
+
+const spans = [];
+
+
+const walker = document.createTreeWalker(
+    range.commonAncestorContainer.parentElement,
+    NodeFilter.SHOW_ELEMENT
+);
+
+let node = walker.nextNode();
+
+while (node) {
+  if (node.tagName === "SPAN") {
+  if (range.intersectsNode(node)) {
+    spans.push(node);
+  }
+
+  
+}
+
+  node = walker.nextNode();
+}
+
+console.log("Spans seleccionats:", spans);
 
 const span = document.createElement("span");
 span.style.fontSize = `${fontSizeSelect.value}px`;
