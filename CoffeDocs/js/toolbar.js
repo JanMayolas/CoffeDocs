@@ -145,6 +145,7 @@ function changeFontSize() {
         const parentSpan = textNode.parentElement;
 
         if (!parentSpan || parentSpan.tagName !== "SPAN") {
+            applyTextFormat("fontSize", "7");
             return;
         }
 

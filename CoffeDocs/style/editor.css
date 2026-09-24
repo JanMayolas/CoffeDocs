@@ -1,25 +1,27 @@
-.text-area,
 .text-area {
+    width: 800px;
+    min-height: 1056px;
+
+    box-sizing: border-box;
+
+    padding: 80px 60px;
+
     color: #4E342E;
     font-size: 18px;
     font-family: ComicRelief, Inter, Poppins, Arial, sans-serif;
-    width: 800px;
-    min-height: 1056px;
-    max-height: 1120px;
+    line-height: 1.6;
+
+    background-color: #fff8f0;
+
     border: 1px solid #dadce0;
     box-shadow: 0 4px 20px rgba(62, 39, 35, 0.15);
-    line-height: 1.6;
-    padding: 80px 60px;
-    background-color: #fff8f0;
+
     outline: none;
     margin: 40px auto;
+
     cursor: text;
 }
-
-.text-area:focus,
 
 .text-area:focus {
     outline: none;
 }
-
-

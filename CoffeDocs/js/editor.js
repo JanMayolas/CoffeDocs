@@ -1,2 +1,7 @@
-// comportament de la paginacio, ampliament de foli.
-console.log("Editor script loaded successfully.");
+// Editor behavior
+
+const editor = document.querySelector(".page");
+
+editor.addEventListener("input", () => {
+    // The editor grows with the content.
+});
