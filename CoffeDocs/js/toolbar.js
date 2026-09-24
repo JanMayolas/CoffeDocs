@@ -1,100 +1,230 @@
 // Elements de format de text.
+
 const boldButton = document.getElementById("bold");
 const italicButton = document.getElementById("italic");
 const underlineButton = document.getElementById("underline");
+
 const fontSizeSelect = document.getElementById("font-size");
+
 const textColorButton = document.querySelector(".text-color");
 const textColorPicker = document.querySelector(".text-color-picker");
+
 const markColorButton = document.querySelector(".mark-color");
 const markColorPicker = document.querySelector(".mark-color-picker");
+
 const textArea = document.getElementById("text-area");
 
+let savedRange = null;
+
+
 // Executa una ordre de format i recupera el focus de l'editor.
+
 function applyTextFormat(command, value = null) {
-  document.execCommand(command, false, value);
-  textArea.focus();
+
+    document.execCommand(command, false, value);
+
+    textArea.focus();
 }
 
-// Activa o desactiva la negreta.
+
+// Negreta.
+
 function toggleBold() {
-  applyTextFormat("bold");
+
+    applyTextFormat("bold");
+
 }
 
-// Activa o desactiva la cursiva.
+
+// Cursiva.
+
 function toggleItalic() {
-  applyTextFormat("italic");
+
+    applyTextFormat("italic");
+
 }
 
-// Activa o desactiva el subratllat.
+
+// Subratllat.
+
 function toggleUnderline() {
-  applyTextFormat("underline");
+
+    applyTextFormat("underline");
+
 }
 
-// Obre el selector de color de text.
+
+// Guarda la selecció actual.
+
+function saveSelection() {
+
+    const selection = window.getSelection();
+
+    if (selection.rangeCount > 0) {
+        savedRange = selection.getRangeAt(0).cloneRange();
+    }
+
+}
+
+
+// Recupera la selecció.
+
+function restoreSelection() {
+
+    if (!savedRange) {
+        return;
+    }
+
+    const selection = window.getSelection();
+
+    selection.removeAllRanges();
+    selection.addRange(savedRange);
+
+}
+
+
+// Color de text.
+
 function openTextColorPicker() {
-  textColorPicker.click();
+
+    saveSelection();
+
+    textColorPicker.click();
+
 }
 
-// Aplica el color seleccionat al text.
 function changeTextColor() {
-  applyTextFormat("foreColor", textColorPicker.value);
+
+    restoreSelection();
+
+    applyTextFormat("foreColor", textColorPicker.value);
+
 }
 
-// Obre el selector de color de ressaltat.
+
+// Color de ressaltat.
+
 function openMarkColorPicker() {
-  markColorPicker.click();
+
+    saveSelection();
+
+    markColorPicker.click();
+
 }
 
-// Aplica el color seleccionat com a fons del text.
 function changeMarkColor() {
-  applyTextFormat("backColor", markColorPicker.value);
+
+    restoreSelection();
+
+    applyTextFormat("backColor", markColorPicker.value);
+
 }
 
-// Canvia la mida de la lletra del text seleccionat i recupera el focus de l'editor.
+
+// Mida de la lletra.
+
 function changeFontSize() {
 
-const selection = window.getSelection();
+    const selection = window.getSelection();
 
-if (!selection.rangeCount) {
-    // ...
-    return;
+    if (!selection.rangeCount) {
+        return;
+    }
+
+    const range = selection.getRangeAt(0);
+    const newFontSize = `${fontSizeSelect.value}px`;
+
+    if (!range.collapsed) {
+
+        const textNode = range.startContainer;
+
+        if (textNode.nodeType !== Node.TEXT_NODE) {
+            return;
+        }
+
+        const parentSpan = textNode.parentElement;
+
+        if (!parentSpan || parentSpan.tagName !== "SPAN") {
+            return;
+        }
+
+        const text = textNode.textContent;
+
+        const before = text.slice(0, range.startOffset);
+        const selected = text.slice(
+            range.startOffset,
+            range.endOffset
+        );
+        const after = text.slice(range.endOffset);
+
+        const fragment = document.createDocumentFragment();
+
+        if (before) {
+            const beforeSpan = parentSpan.cloneNode(false);
+            beforeSpan.textContent = before;
+            fragment.appendChild(beforeSpan);
+        }
+
+        const selectedSpan = parentSpan.cloneNode(false);
+        selectedSpan.style.fontSize = newFontSize;
+        selectedSpan.textContent = selected;
+        fragment.appendChild(selectedSpan);
+
+        if (after) {
+            const afterSpan = parentSpan.cloneNode(false);
+            afterSpan.textContent = after;
+            fragment.appendChild(afterSpan);
+        }
+
+        parentSpan.replaceWith(fragment);
+
+        const newSelection = window.getSelection();
+        const newRange = document.createRange();
+
+        newRange.selectNodeContents(selectedSpan);
+
+        newSelection.removeAllRanges();
+        newSelection.addRange(newRange);
+
+    } else {
+
+        const span = document.createElement("span");
+
+        span.style.fontSize = newFontSize;
+        span.innerHTML = "&#8203;";
+
+        range.insertNode(span);
+
+        range.setStart(span, 1);
+        range.collapse(true);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    textArea.focus();
 }
 
-const range = selection.getRangeAt(0);
 
-const spans = [];
+// Botons de format.
 
-
-const span = document.createElement("span");
-span.style.fontSize = `${fontSizeSelect.value}px`;
-
-if (selection.toString().length > 0) {
-  
-
-  range.surroundContents(span);
-
-} else {
-  
-
-  span.innerHTML = "&#8203;"; 
-  
-  range.insertNode(span);
-  
-  range.setStart(span, 0);
-  range.collapse(true);
-  selection.removeAllRanges();
-  selection.addRange(range);
-}
-}
-
-//botons de format.
 boldButton.addEventListener("click", toggleBold);
 italicButton.addEventListener("click", toggleItalic);
 underlineButton.addEventListener("click", toggleUnderline);
 
-//color.
+
+// Color.
+
 textColorButton.addEventListener("click", openTextColorPicker);
 textColorPicker.addEventListener("input", changeTextColor);
 
-//mida de lletra.
+
+// Mark color.
+
+markColorButton.addEventListener("click", openMarkColorPicker);
+markColorPicker.addEventListener("input", changeMarkColor);
+
+
+// Mida de lletra.
+
 fontSizeSelect.addEventListener("change", changeFontSize);
