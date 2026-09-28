@@ -23,6 +23,10 @@ The project is inspired by the simplicity of Google Docs, but focuses on a warm 
 
 CoffeeDocs is primarily an **educational project** created to learn how a web-based text editor works internally without relying on frameworks or external libraries.
 
+## The website URL:
+
+# https://coffeedocs.aurumnet.com/
+
 ---
 
 ## 📸 Preview
